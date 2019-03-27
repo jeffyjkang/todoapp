@@ -21,17 +21,18 @@ class Register extends Component {
     localStorage.setItem("username", username);
     const password = this.state.passwordInput;
     localStorage.setItem("password", password);
-    window.location.reload();
+    this.props.refresh();
     // axios call
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <h3>Register</h3>
         <form onSubmit={this.registerSubmit}>
           <div>
-            Username:
+            Username: {"  "}
             <input
               name="usernameInput"
               type="text"
@@ -42,13 +43,14 @@ class Register extends Component {
             />
           </div>
           <div>
-            Password:
+            Password: {"  "}
             <input
               name="passwordInput"
               type="password"
               onChange={this.editRegisterHandler}
               placeholder="Password"
               value={this.state.passwordInput}
+              required
             />
           </div>
           <button type="submit">Register</button>

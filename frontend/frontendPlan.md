@@ -14,6 +14,8 @@
 14. from single todo card view, edit button will take user to another form, this page will have the todo pre-set with content in the form input, after edit is complete and submitted route to todo by id
 15. from the single todo card view, delete button will delete todo and route to the list view
 
+for the password reset, wait until backend gets implemented
+
 dependencies:
 react-router-dom
 styled-components

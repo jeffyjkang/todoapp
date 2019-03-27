@@ -19,8 +19,16 @@ const Authenticate = Homepage => Auth =>
       }
     }
 
+    refresh = () => {
+      this.componentDidMount();
+    };
+
     render() {
-      return <div>{this.state.loggedIn ? <Homepage /> : <Auth />}</div>;
+      return (
+        <div>
+          {this.state.loggedIn ? <Homepage /> : <Auth refresh={this.refresh} />}
+        </div>
+      );
     }
   };
 

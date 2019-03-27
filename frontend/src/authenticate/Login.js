@@ -22,6 +22,7 @@ class Login extends Component {
     const password = this.state.passwordInput;
     localStorage.setItem("password", password);
     window.location.reload();
+    this.props.refresh();
     // axios call
   };
 
@@ -31,7 +32,7 @@ class Login extends Component {
         <h3>Login</h3>
         <form onSubmit={this.loginSubmit}>
           <div>
-            Username:
+            Username: {"  "}
             <input
               name="usernameInput"
               type="text"
@@ -42,7 +43,7 @@ class Login extends Component {
             />
           </div>
           <div>
-            Password:
+            Password: {"  "}
             <input
               name="passwordInput"
               type="password"

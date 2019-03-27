@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
+import NavBar from "./navbar/NavBar";
+import { HomeContainer } from "../styles/reusableStyles";
 
 class Homepage extends Component {
   constructor(props) {
@@ -7,10 +9,12 @@ class Homepage extends Component {
     this.state = {};
   }
   render() {
+    console.log(this.props);
     return (
-      <div>
+      <HomeContainer>
+        <NavBar />
         <p>Homepage</p>
-      </div>
+      </HomeContainer>
     );
   }
 }
