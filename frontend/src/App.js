@@ -11,7 +11,7 @@ const AuthComponent = Authenticate(Homepage)(Auth);
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="app">
         <Route path="/" component={AuthComponent} />
         {/* <AuthComponent /> */}
       </div>

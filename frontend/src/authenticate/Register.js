@@ -8,10 +8,13 @@ class Register extends Component {
       passwordInput: ""
     };
   }
+
+  // for input fields usernameinput and passwordinput
   editRegisterHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // to register, currently sets localstorage username, password
   registerSubmit = e => {
     e.preventDefault();
     const username = this.state.usernameInput;

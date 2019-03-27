@@ -8,10 +8,13 @@ class Login extends Component {
       passwordInput: ""
     };
   }
+
+  // for input fields usernameinput and passwordinput
   editLoginHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // to login, currently sets localstorage username, password
   loginSubmit = e => {
     e.preventDefault();
     const username = this.state.usernameInput;
