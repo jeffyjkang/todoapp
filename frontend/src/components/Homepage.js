@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import NavBar from "./navbar/NavBar";
 import { HomeContainer } from "../styles/reusableStyles";
 import DummyData from "../dummyData/DummyData";
@@ -18,9 +18,17 @@ class Homepage extends Component {
   render() {
     return (
       <HomeContainer>
-        <NavBar />
+        <Route path="/" render={props => <NavBar {...props} />} />
+        {/* <NavBar /> */}
         {/* <p>Homepage</p> */}
-        <ListView dummyData={this.state.dummyData} />
+        {/* <ListView dummyData={this.state.dummyData} /> */}
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <ListView {...props} dummyData={this.state.dummyData} />
+          )}
+        />
       </HomeContainer>
     );
   }

@@ -38,7 +38,7 @@ const DummyData = [
   },
   {
     id: 7,
-    title: "Go On A Trop",
+    title: "Go On A Trip",
     date: "2019, 02, 20",
     description:
       "You've earned a little r & r, go on that trip you've always wanted to go to."
