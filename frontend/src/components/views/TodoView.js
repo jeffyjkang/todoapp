@@ -3,6 +3,7 @@ import { TodoViewContainer } from "../../styles/reusableStyles";
 
 const TodoView = props => {
   return (
+    // todo view views all props of single todo
     <TodoViewContainer>
       TodoView
       <h1>Title: {props.todo.title}</h1>

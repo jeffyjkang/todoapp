@@ -5,6 +5,7 @@ import { HomeContainer } from "../styles/reusableStyles";
 import DummyData from "../dummyData/DummyData";
 import ListView from "./views/ListView";
 import TodoView from "./views/TodoView";
+import CreateTodoView from "./views/CreateTodoView";
 
 class Homepage extends Component {
   constructor(props) {
@@ -31,7 +32,10 @@ class Homepage extends Component {
   render() {
     return (
       <HomeContainer>
-        <Route path="/" render={props => <NavBar {...props} />} />
+        <Route
+          path="/"
+          render={props => <NavBar {...props} todos={this.state.todos} />}
+        />
         {/* <NavBar /> */}
         {/* <ListView dummyData={this.state.dummyData} /> */}
         <Route
@@ -46,9 +50,10 @@ class Homepage extends Component {
           )}
         />
         <Route
-          path="/:id"
+          path="/todo/:id"
           render={props => <TodoView {...props} todo={this.returnTodo()} />}
         />
+        <Route path="/create" render={props => <CreateTodoView {...props} />} />
       </HomeContainer>
     );
   }

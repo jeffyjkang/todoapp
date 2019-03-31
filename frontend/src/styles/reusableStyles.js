@@ -62,6 +62,16 @@ export const TodoContainer = styled.div`
 
 // todoview styles
 export const TodoViewContainer = styled.div`
+  background-color: #626977;
+  border: 1rem solid #0f1726;
+  margin: auto;
+  border-radius: 1rem;
+  padding: 2.5rem;
+`;
+
+// create todoview styles
+export const CreateTodoContainer = styled.div`
+  background-color: #626977;
   border: 1rem solid #0f1726;
   margin: auto;
   border-radius: 1rem;
