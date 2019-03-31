@@ -5,7 +5,7 @@ import Homepage from "./components/Homepage";
 import { Route } from "react-router-dom";
 
 import "./App.css";
-
+// HOC Authenticate pass in Homepage and Auth
 const AuthComponent = Authenticate(Homepage)(Auth);
 
 class App extends Component {

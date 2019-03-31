@@ -59,3 +59,11 @@ export const TodoContainer = styled.div`
   border-radius: 1rem;
   margin: 2.5rem;
 `;
+
+// todoview styles
+export const TodoViewContainer = styled.div`
+  border: 1rem solid #0f1726;
+  margin: auto;
+  border-radius: 1rem;
+  padding: 2.5rem;
+`;

@@ -7,6 +7,7 @@ const Authenticate = Homepage => Auth =>
       loggedIn: false
     };
 
+    // as HOC component mounts, if username and password exists set state of loggedIn to true
     componentDidMount() {
       if (
         localStorage.getItem("username") &&
@@ -22,7 +23,7 @@ const Authenticate = Homepage => Auth =>
     refresh = () => {
       this.componentDidMount();
     };
-
+    // if loggedIn is true, return homepage, if loggedIn is false, return auth
     render() {
       return (
         <div>
