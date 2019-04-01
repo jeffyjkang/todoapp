@@ -69,7 +69,7 @@ export const TodoViewContainer = styled.div`
   padding: 2.5rem;
 `;
 
-// create todoview styles
+// create todo view styles
 export const CreateTodoContainer = styled.div`
   background-color: #626977;
   border: 1rem solid #0f1726;
@@ -93,4 +93,13 @@ export const ButtonContainer = styled.button`
   height: 2rem;
   font-size: 1.5rem;
   color: #b3a790;
+`;
+
+// edit todo view styles
+export const EditTodoContainer = styled.div`
+  background-color: #626977;
+  border: 1rem solid #0f1726;
+  margin: auto;
+  border-radius: 1rem;
+  padding: 2.5rem;
 `;

@@ -16,8 +16,8 @@ class CreateTodoView extends Component {
       description: ""
     };
   }
-  // edit todo param function
-  editTodoHandler = e => {
+  // create todo param function
+  createTodoHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
   //
@@ -32,7 +32,7 @@ class CreateTodoView extends Component {
             <InputContainer
               name="title"
               type="text"
-              onChange={this.editTodoHandler}
+              onChange={this.createTodoHandler}
               placeholder=" title"
               value={this.state.title}
               required
@@ -43,7 +43,7 @@ class CreateTodoView extends Component {
             <InputContainer
               name="date"
               type="date"
-              onChange={this.editTodoHandler}
+              onChange={this.createTodoHandler}
               //   placeholder="date"
               value={this.state.date}
               required
@@ -54,7 +54,7 @@ class CreateTodoView extends Component {
             <InputContainer
               name="description"
               type="text"
-              onChange={this.editTodoHandler}
+              onChange={this.createTodoHandler}
               placeholder=" description"
               value={this.state.description}
               required

@@ -6,6 +6,7 @@ import DummyData from "../dummyData/DummyData";
 import ListView from "./views/ListView";
 import TodoView from "./views/TodoView";
 import CreateTodoView from "./views/CreateTodoView";
+import EditTodoView from "./views/EditTodoView";
 
 class Homepage extends Component {
   constructor(props) {
@@ -33,6 +34,12 @@ class Homepage extends Component {
     this.setState({ todos: [...this.state.todos, todo] });
     this.props.history.push(`/todo/${todo.id}`, todo);
   };
+  // edit todo
+  editTodoSubmit = todo => e => {
+    e.preventDefault();
+    this.setState({ todos: [...this.state.todos, todo] });
+    this.props.history.push(`/todo/${todo.id}`, todo);
+  };
   render() {
     return (
       <HomeContainer>
@@ -55,7 +62,13 @@ class Homepage extends Component {
         />
         <Route
           path="/todo/:id"
-          render={props => <TodoView {...props} todo={this.returnTodo()} />}
+          render={props => (
+            <TodoView
+              {...props}
+              todo={this.returnTodo()}
+              selectedTodo={this.state.selectedTodo}
+            />
+          )}
         />
         <Route
           path="/create"
@@ -64,6 +77,16 @@ class Homepage extends Component {
               {...props}
               todos={this.state.todos}
               createTodoSubmit={this.createTodoSubmit}
+            />
+          )}
+        />
+        <Route
+          path="/edit/:id"
+          render={props => (
+            <EditTodoView
+              {...props}
+              todo={this.returnTodo()}
+              editTodoSubmit={this.editTodoSubmit}
             />
           )}
         />
