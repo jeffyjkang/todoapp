@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 //colors
-// primary 282c34
-// accent1 626977
+// primary 282c34 /
 // accent2 626977 / todo background
-// accent3 191f2b
+// accent1 464D59 /
+// accent3 191f2b / input background
 // accent4 0f1726 /accent todo
 // complementary 4e473a
-// cacc1 b3a790
+// cacc1 b3a790 / button text color
 // cacc2 867b66
 // cacc3 403622
-// cacc4 382c13
+// cacc4 382c13 / button bg
 
 // auth styles
 export const AuthContainer = styled.div`
@@ -76,4 +76,21 @@ export const CreateTodoContainer = styled.div`
   margin: auto;
   border-radius: 1rem;
   padding: 2.5rem;
+`;
+
+// input styles
+export const InputContainer = styled.input`
+  background-color: #191f2b;
+  color: white;
+  border-radius: 0.25rem;
+  height: 2rem;
+  width: 100%;
+`;
+// button styles
+export const ButtonContainer = styled.button`
+  background: #382c13;
+  border-radius: 0.25rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  color: #b3a790;
 `;

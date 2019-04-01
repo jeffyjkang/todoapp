@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 const Authenticate = Homepage => Auth =>
   class extends Component {
@@ -27,7 +27,11 @@ const Authenticate = Homepage => Auth =>
     render() {
       return (
         <div>
-          {this.state.loggedIn ? <Homepage /> : <Auth refresh={this.refresh} />}
+          {this.state.loggedIn ? (
+            <Route component={Homepage} />
+          ) : (
+            <Auth refresh={this.refresh} />
+          )}
         </div>
       );
     }

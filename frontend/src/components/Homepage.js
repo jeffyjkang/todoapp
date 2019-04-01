@@ -21,14 +21,18 @@ class Homepage extends Component {
   }
   // function to select specific todo
   selectTodoHandler = todo => {
-    console.log(todo);
     this.setState({ selectedTodo: todo });
   };
   // function to return selected todo
   returnTodo = () => {
     return this.state.selectedTodo;
   };
-  //
+  // create todo
+  createTodoSubmit = todo => e => {
+    e.preventDefault();
+    this.setState({ todos: [...this.state.todos, todo] });
+    this.props.history.push(`/todo/${todo.id}`, todo);
+  };
   render() {
     return (
       <HomeContainer>
@@ -53,7 +57,16 @@ class Homepage extends Component {
           path="/todo/:id"
           render={props => <TodoView {...props} todo={this.returnTodo()} />}
         />
-        <Route path="/create" render={props => <CreateTodoView {...props} />} />
+        <Route
+          path="/create"
+          render={props => (
+            <CreateTodoView
+              {...props}
+              todos={this.state.todos}
+              createTodoSubmit={this.createTodoSubmit}
+            />
+          )}
+        />
       </HomeContainer>
     );
   }
