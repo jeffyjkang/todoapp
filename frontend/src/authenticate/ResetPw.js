@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Register extends Component {
+class ResetPw extends Component {
   constructor() {
     super();
     this.state = {
@@ -9,14 +9,12 @@ class Register extends Component {
       passwordInputC: ""
     };
   }
-
-  // for input fields usernameinput and password input
-  editRegisterHandler = e => {
+  // for input fields username input and password input
+  editResetPwHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
-  // to register, currently sets localstorage username, password
-  registerSubmit = e => {
+  // reset pw submit
+  resetPwSubmit = e => {
     e.preventDefault();
     if (this.state.passwordInput === this.state.passwordInputC) {
       const username = this.state.usernameInput;
@@ -31,53 +29,53 @@ class Register extends Component {
         passwordInputC: ""
       });
     }
-    // axios call
+    // axios call to edit user
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
-        <h3>Register</h3>
-        <form onSubmit={this.registerSubmit}>
+        <h3>Reset Password</h3>
+        <p>Input new password to reset existing password.</p>
+        <form onSubmit={this.resetPwSubmit}>
           <div>
             Username: {"  "}
             <input
               name="usernameInput"
               type="text"
-              onChange={this.editRegisterHandler}
+              onChange={this.editResetPwHandler}
               placeholder="Username"
               value={this.state.usernameInput}
               required
             />
           </div>
           <div>
-            Password: {"  "}
+            New Password: {"  "}
             <input
               name="passwordInput"
               type="password"
-              onChange={this.editRegisterHandler}
-              placeholder="Password"
+              onChange={this.editResetPwHandler}
+              placeholder="New Password"
               value={this.state.passwordInput}
               required
             />
           </div>
           <div>
-            Confirm Password: {"  "}
+            Confirm New Password: {"  "}
             <input
               name="passwordInputC"
               type="password"
-              onChange={this.editRegisterHandler}
-              placeholder="Confirm Password"
+              onChange={this.editResetPwHandler}
+              placeholder="Confirm New Password"
               value={this.state.passwordInputC}
               required
             />
           </div>
-          <button type="submit">Register</button>
+          <button type="submit">Submit New Password</button>
         </form>
       </div>
     );
   }
 }
 
-export default Register;
+export default ResetPw;

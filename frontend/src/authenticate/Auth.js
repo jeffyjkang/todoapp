@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { AuthContainer } from "../styles/reusableStyles";
 import Register from "./Register";
 import Login from "./Login";
+import ForgotPw from "./ForgotPw";
+import ResetPw from "./ResetPw";
 import { Route, NavLink } from "react-router-dom";
 
 class Auth extends Component {
@@ -20,6 +22,16 @@ class Auth extends Component {
           exact
           path="/login"
           render={props => <Login {...props} refresh={this.props.refresh} />}
+        />
+        <Route
+          exact
+          path="/forgotpw"
+          render={props => <ForgotPw {...props} refresh={this.props.refresh} />}
+        />
+        <Route
+          exact
+          path="/resetpw"
+          render={props => <ResetPw {...props} refresh={this.props.refresh} />}
         />
         {/* <Register /> */}
         {/* <Login /> */}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -9,7 +10,7 @@ class Login extends Component {
     };
   }
 
-  // for input fields usernameinput and passwordinput
+  // for input fields usernameinput and password input
   editLoginHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -55,6 +56,7 @@ class Login extends Component {
           </div>
           <button type="submit">Login</button>
         </form>
+        <NavLink to="/forgotPW">Forgot Password</NavLink>
       </div>
     );
   }
