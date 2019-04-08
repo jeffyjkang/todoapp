@@ -11,7 +11,9 @@ const Navbar = props => {
       <Link to={"/create"}>
         <h1>Create Todo</h1>
       </Link>
-      <h1>Sign Out</h1>
+      <Link to={"/"}>
+        <h1 onClick={props.signOut}>Sign Out</h1>
+      </Link>
     </NavConatiner>
   );
 };

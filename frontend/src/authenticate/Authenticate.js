@@ -20,6 +20,10 @@ const Authenticate = Homepage => Auth =>
       }
     }
 
+    logOut = () => {
+      this.setState({ loggedIn: false });
+    };
+
     refresh = () => {
       this.componentDidMount();
     };
@@ -28,7 +32,11 @@ const Authenticate = Homepage => Auth =>
       return (
         <div>
           {this.state.loggedIn ? (
-            <Route component={Homepage} />
+            // <Route component={Homepage} loggedIn={this.state.loggedIn} />
+            <Route
+              path="/"
+              render={props => <Homepage {...props} logOut={this.logOut} />}
+            />
           ) : (
             <Auth refresh={this.refresh} />
           )}

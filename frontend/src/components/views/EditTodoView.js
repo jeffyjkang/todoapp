@@ -10,10 +10,10 @@ class EditTodoView extends Component {
     console.log(props);
     super(props);
     this.state = {
-      id: "",
-      title: "",
-      date: "",
-      description: ""
+      id: props.todo.id,
+      title: props.todo.title,
+      date: props.todo.date,
+      description: props.todo.description
     };
   }
   // edit todo param function
@@ -32,7 +32,7 @@ class EditTodoView extends Component {
               name="title"
               type="text"
               onChange={this.editTodoHandler}
-              placeholder=" title"
+              placeholder={this.state.title}
               value={this.state.title}
               required
             />
@@ -54,7 +54,7 @@ class EditTodoView extends Component {
               name="description"
               type="text"
               onChange={this.editTodoHandler}
-              placeholder=" description"
+              placeholder={this.state.description}
               value={this.state.description}
               required
             />

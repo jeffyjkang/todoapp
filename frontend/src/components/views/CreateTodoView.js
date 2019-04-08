@@ -10,7 +10,7 @@ class CreateTodoView extends Component {
     // console.log(props);
     super(props);
     this.state = {
-      id: props.todos.length + 1,
+      id: props.todos.length,
       title: "",
       date: "",
       description: ""

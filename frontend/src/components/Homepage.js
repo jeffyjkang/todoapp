@@ -13,7 +13,7 @@ class Homepage extends Component {
     super(props);
     this.state = {
       todos: [],
-      selectedTodo: ""
+      selectedTodo: {}
     };
   }
   // when component mounts bring in dummydata array
@@ -31,21 +31,37 @@ class Homepage extends Component {
   // create todo
   createTodoSubmit = todo => e => {
     e.preventDefault();
+    this.selectTodoHandler(todo);
     this.setState({ todos: [...this.state.todos, todo] });
     this.props.history.push(`/todo/${todo.id}`, todo);
   };
   // edit todo
   editTodoSubmit = todo => e => {
     e.preventDefault();
-    this.setState({ todos: [...this.state.todos, todo] });
+    this.selectTodoHandler(todo);
+    this.state.todos.splice(todo.id, 1, todo);
+    this.setState({ todos: [...this.state.todos] });
     this.props.history.push(`/todo/${todo.id}`, todo);
+  };
+  signOut = e => {
+    e.preventDefault();
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+    this.props.logOut();
+    this.props.history.push("/");
   };
   render() {
     return (
       <HomeContainer>
         <Route
           path="/"
-          render={props => <NavBar {...props} todos={this.state.todos} />}
+          render={props => (
+            <NavBar
+              {...props}
+              todos={this.state.todos}
+              signOut={this.signOut}
+            />
+          )}
         />
         {/* <NavBar /> */}
         {/* <ListView dummyData={this.state.dummyData} /> */}
@@ -62,13 +78,7 @@ class Homepage extends Component {
         />
         <Route
           path="/todo/:id"
-          render={props => (
-            <TodoView
-              {...props}
-              todo={this.returnTodo()}
-              selectedTodo={this.state.selectedTodo}
-            />
-          )}
+          render={props => <TodoView {...props} todo={this.returnTodo()} />}
         />
         <Route
           path="/create"
