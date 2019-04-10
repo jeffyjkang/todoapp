@@ -5,6 +5,7 @@ import Login from "./Login";
 import ForgotPw from "./ForgotPw";
 import ResetPw from "./ResetPw";
 import { Route, NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Auth extends Component {
   render() {
@@ -39,5 +40,9 @@ class Auth extends Component {
     );
   }
 }
+
+Auth.propTypes = {
+  refresh: PropTypes.func
+};
 
 export default Auth;

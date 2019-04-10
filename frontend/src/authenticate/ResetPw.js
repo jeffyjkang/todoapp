@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class ResetPw extends Component {
   constructor() {
@@ -77,5 +78,9 @@ class ResetPw extends Component {
     );
   }
 }
+
+ResetPw.propTypes = {
+  refresh: PropTypes.func
+};
 
 export default ResetPw;

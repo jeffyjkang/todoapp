@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Register extends Component {
   constructor() {
@@ -35,7 +36,6 @@ class Register extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h3>Register</h3>
@@ -79,5 +79,9 @@ class Register extends Component {
     );
   }
 }
+
+Register.propTypes = {
+  refresh: PropTypes.func
+};
 
 export default Register;

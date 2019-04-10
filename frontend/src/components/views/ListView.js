@@ -2,6 +2,7 @@ import React from "react";
 import Todo from "./Todo";
 import { Link } from "react-router-dom";
 import { ListViewContainer } from "../../styles/reusableStyles";
+import PropTypes from "prop-types";
 
 const Listview = props => {
   // listview contains all todos of user
@@ -22,4 +23,10 @@ const Listview = props => {
     </div>
   );
 };
+
+Listview.propTypes = {
+  todos: PropTypes.array,
+  selectTodoHandler: PropTypes.func
+};
+
 export default Listview;

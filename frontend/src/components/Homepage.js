@@ -7,6 +7,7 @@ import ListView from "./views/ListView";
 import TodoView from "./views/TodoView";
 import CreateTodoView from "./views/CreateTodoView";
 import EditTodoView from "./views/EditTodoView";
+import PropTypes from "prop-types";
 
 class Homepage extends Component {
   constructor(props) {
@@ -104,5 +105,9 @@ class Homepage extends Component {
     );
   }
 }
+
+Homepage.propTypes = {
+  logOut: PropTypes.func
+};
 
 export default Homepage;

@@ -4,9 +4,9 @@ import {
   TodoViewContainer,
   ButtonContainer
 } from "../../styles/reusableStyles";
+import PropTypes from "prop-types";
 
 const TodoView = props => {
-  console.log(props);
   // todo view when creating a todo routes by id
   //   if (props.history.location.state) {
   //     return (
@@ -33,5 +33,9 @@ const TodoView = props => {
       </Link>
     </TodoViewContainer>
   );
+};
+
+TodoView.propTypes = {
+  todo: PropTypes.object
 };
 export default TodoView;

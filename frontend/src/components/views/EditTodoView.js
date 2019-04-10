@@ -4,6 +4,7 @@ import {
   InputContainer,
   ButtonContainer
 } from "../../styles/reusableStyles";
+import PropTypes from "prop-types";
 
 class EditTodoView extends Component {
   constructor(props) {
@@ -68,4 +69,9 @@ class EditTodoView extends Component {
     );
   }
 }
+EditTodoView.propTypes = {
+  todo: PropTypes.object,
+  editTodoSubmit: PropTypes.func
+};
+
 export default EditTodoView;

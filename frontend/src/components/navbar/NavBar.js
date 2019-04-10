@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { NavConatiner } from "../../styles/reusableStyles";
+import PropTypes from "prop-types";
 
 const Navbar = props => {
   return (
@@ -16,6 +17,10 @@ const Navbar = props => {
       </Link>
     </NavConatiner>
   );
+};
+
+Navbar.propTypes = {
+  signOut: PropTypes.func
 };
 
 export default Navbar;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Login extends Component {
   constructor() {
@@ -56,10 +57,14 @@ class Login extends Component {
           </div>
           <button type="submit">Login</button>
         </form>
-        <NavLink to="/forgotPW">Forgot Password</NavLink>
+        <NavLink to="/forgotpw">Forgot Password</NavLink>
       </div>
     );
   }
 }
+
+Login.propTypes = {
+  refresh: PropTypes.func
+};
 
 export default Login;
