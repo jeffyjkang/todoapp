@@ -7,6 +7,7 @@ import ListView from "./views/ListView";
 import TodoView from "./views/TodoView";
 import CreateTodoView from "./views/CreateTodoView";
 import EditTodoView from "./views/EditTodoView";
+import DeleteTodoView from "./views/DeleteTodoView";
 import PropTypes from "prop-types";
 
 class Homepage extends Component {
@@ -40,10 +41,28 @@ class Homepage extends Component {
   editTodoSubmit = todo => e => {
     e.preventDefault();
     this.selectTodoHandler(todo);
-    this.state.todos.splice(todo.id, 1, todo);
+    for (let i = 0; i < this.state.todos.length; i++) {
+      if (this.state.todos[i].id === todo.id) {
+        this.state.todos.splice(i, 1, todo);
+      }
+    }
     this.setState({ todos: [...this.state.todos] });
     this.props.history.push(`/todo/${todo.id}`, todo);
   };
+  // delete todo
+  deleteTodoSubmit = todo => e => {
+    e.preventDefault();
+    this.selectTodoHandler(todo);
+    // this.state.todos.splice(todo.id, 1);
+    for (let i = 0; i < this.state.todos.length; i++) {
+      if (this.state.todos[i].id === todo.id) {
+        this.state.todos.splice(i, 1);
+      }
+    }
+    this.setState({ todos: [...this.state.todos] });
+    this.props.history.push("/");
+  };
+  // sign out
   signOut = e => {
     e.preventDefault();
     localStorage.removeItem("username");
@@ -64,8 +83,6 @@ class Homepage extends Component {
             />
           )}
         />
-        {/* <NavBar /> */}
-        {/* <ListView dummyData={this.state.dummyData} /> */}
         <Route
           exact
           path="/"
@@ -98,6 +115,16 @@ class Homepage extends Component {
               {...props}
               todo={this.returnTodo()}
               editTodoSubmit={this.editTodoSubmit}
+            />
+          )}
+        />
+        <Route
+          path="/delete/:id"
+          render={props => (
+            <DeleteTodoView
+              {...props}
+              todo={this.returnTodo()}
+              deleteTodoSubmit={this.deleteTodoSubmit}
             />
           )}
         />

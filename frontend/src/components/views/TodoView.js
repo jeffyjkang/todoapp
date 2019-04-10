@@ -31,6 +31,9 @@ const TodoView = props => {
       <Link to={`/edit/${props.todo.id}`}>
         <ButtonContainer>Edit</ButtonContainer>
       </Link>
+      <Link to={`/delete/${props.todo.id}`}>
+        <ButtonContainer>Delete</ButtonContainer>
+      </Link>
     </TodoViewContainer>
   );
 };
