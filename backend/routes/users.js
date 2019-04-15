@@ -43,7 +43,7 @@ router.get("/", async (req, res) => {
     const users = await usersDb.get();
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).json({ error: "There was an error getting the users." });
+    res.status(500).json({ error: "There was an error retreiving the users." });
   }
 });
 
@@ -53,10 +53,11 @@ router.get("/:id", auth.authorize, async (req, res) => {
     const id = req.params.id;
     console.log(id);
     console.log(decodedToken);
-    const user = await usersDb.get(id);
+    const user = await usersDb.get(id).first();
+    console.log(user);
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ error: "There was an error getting the user." });
+    res.status(500).json({ error: "There was an error retreiving the user." });
   }
 });
 // put route
