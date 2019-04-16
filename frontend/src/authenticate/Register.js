@@ -6,6 +6,8 @@ class Register extends Component {
     super();
     this.state = {
       usernameInput: "",
+      emailInput: "",
+      emailInputC: "",
       passwordInput: "",
       passwordInputC: ""
     };
@@ -19,6 +21,13 @@ class Register extends Component {
   // to register, currently sets localstorage username, password
   registerSubmit = e => {
     e.preventDefault();
+    if (this.state.emailInput !== this.state.emailInputC) {
+      alert("E-mails do not match!");
+      this.setState({
+        emailInput: "",
+        emailInputC: ""
+      });
+    }
     if (this.state.passwordInput === this.state.passwordInputC) {
       const username = this.state.usernameInput;
       localStorage.setItem("username", username);
@@ -48,6 +57,28 @@ class Register extends Component {
               onChange={this.editRegisterHandler}
               placeholder="Username"
               value={this.state.usernameInput}
+              required
+            />
+          </div>
+          <div>
+            E-mail: {"  "}
+            <input
+              name="emailInput"
+              type="email"
+              onChange={this.editRegisterHandler}
+              placeholder="E-mail"
+              value={this.state.emailInput}
+              required
+            />
+          </div>
+          <div>
+            Confirm E-mail: {"  "}
+            <input
+              name="emailInputC"
+              type="email"
+              onChange={this.editRegisterHandler}
+              placeholder="Confirm E-mail"
+              value={this.state.emailInputC}
               required
             />
           </div>
