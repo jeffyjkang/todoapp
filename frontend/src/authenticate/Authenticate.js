@@ -10,8 +10,9 @@ const Authenticate = Homepage => Auth =>
     // as HOC component mounts, if username and password exists set state of loggedIn to true
     componentDidMount() {
       if (
-        localStorage.getItem("username") &&
-        localStorage.getItem("password")
+        // localStorage.getItem("username") &&
+        // localStorage.getItem("password")
+        localStorage.getItem("token")
       ) {
         this.setState({ loggedIn: true });
         this.props.history.push("/");
