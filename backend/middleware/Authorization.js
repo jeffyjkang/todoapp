@@ -6,7 +6,8 @@ const secret = process.env.SECRET || "superSecret";
 function generateToken(user) {
   const payload = {
     sub: user.id,
-    username: user.username
+    username: user.username,
+    email: user.email
   };
   const options = {
     expiresIn: "1h"
