@@ -6,10 +6,9 @@ import {
 import PropTypes from "prop-types";
 
 class DeleteTodoView extends Component {
-  constructor(props) {
-    console.log(props);
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   noSubmit = e => {
     e.preventDefault();
     this.props.history.push(`/todo/${this.props.todo.id}`);

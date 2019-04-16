@@ -11,7 +11,7 @@ class CreateTodoView extends Component {
     // console.log(props);
     super(props);
     this.state = {
-      id: Math.random(),
+      // id: Math.random(),
       title: "",
       date: "",
       description: ""

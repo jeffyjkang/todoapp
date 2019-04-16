@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 class EditTodoView extends Component {
   constructor(props) {
-    console.log(props);
+    // console.log(props);
     super(props);
     this.state = {
       id: props.todo.id,
