@@ -23,7 +23,7 @@ class Register extends Component {
     e.preventDefault();
     if (this.state.emailInput !== this.state.emailInputC) {
       alert("E-mails do not match!");
-      this.setState({
+      return this.setState({
         emailInput: "",
         emailInputC: ""
       });
