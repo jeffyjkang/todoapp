@@ -7,10 +7,24 @@ const auth = require("../middleware/Authorization");
 // post route
 // register
 router.post("/register", async (req, res) => {
+  const user = req.body;
+  const hash = bcrypt.hashSync(user.password, 14);
+  user.password = hash;
   try {
-    const user = req.body;
-    const hash = bcrypt.hashSync(user.password, 14);
-    user.password = hash;
+    const usernameCheck = await usersDb
+      .count("username as username")
+      .where("username", "=", user.username)
+      .first();
+    const emailCheck = await usersDb
+      .count("email as email")
+      .where("email", "=", user.email)
+      .first();
+    if (usernameCheck.username > 0) {
+      res.status(409).json({ error: "Username is already taken." });
+    } else if (emailCheck.email > 0) {
+      res.status(409).json({ error: "Email is already taken." });
+    }
+    //
     const id = await usersDb.insert(user);
     const token = auth.generateToken(user);
     res.status(201).json(token);
@@ -20,8 +34,8 @@ router.post("/register", async (req, res) => {
 });
 // login
 router.post("/login", async (req, res) => {
+  const credentials = req.body;
   try {
-    const credentials = req.body;
     const user = await usersDb
       .get()
       .where({ username: credentials.username })
@@ -38,19 +52,19 @@ router.post("/login", async (req, res) => {
 });
 
 // get route
-router.get("/", async (req, res) => {
-  try {
-    const users = await usersDb.get();
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(500).json({ error: "There was an error retreiving the users." });
-  }
-});
+// router.get("/", async (req, res) => {
+//   try {
+//     const users = await usersDb.get();
+//     res.status(200).json(users);
+//   } catch (error) {
+//     res.status(500).json({ error: "There was an error retreiving the users." });
+//   }
+// });
 
 router.get("/:id", auth.authorize, async (req, res) => {
+  const decodedToken = req.decodedToken;
+  const id = req.params.id;
   try {
-    const decodedToken = req.decodedToken;
-    const id = req.params.id;
     console.log(id);
     console.log(decodedToken);
     const user = await usersDb.get(id).first();
