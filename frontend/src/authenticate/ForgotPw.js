@@ -1,14 +1,16 @@
 import React, { Component } from "react";
+import Axios from "axios";
 
 // temp password for testing
-const tempPw = "pass";
+// const tempPw = "pass";
 //
 class ForgotPw extends Component {
   constructor(props) {
-    console.log(props);
+    // console.log(props);
     super(props);
     this.state = {
       usernameInput: "",
+      emailInput: "",
       passwordInput: "",
       passwordInputC: ""
     };
@@ -21,11 +23,30 @@ class ForgotPw extends Component {
   forgotPwSubmit = e => {
     e.preventDefault();
     if (this.state.passwordInput === this.state.passwordInputC) {
-      if (this.state.passwordInput === tempPw) {
-        this.props.history.push("/resetpw");
-      } else {
-        alert("Incorrect temporary password");
-      }
+      // if (this.state.passwordInput === tempPw) {
+      //   this.props.history.push("/resetpw");
+      // } else {
+      //   alert("Incorrect temporary password");
+      // }
+      const params = {
+        headers: {
+          username: this.state.usernameInput,
+          email: this.state.emailInput,
+          password: this.state.passwordInput
+        }
+      };
+      Axios.get("http://localhost:9000/users/forgotpw", params)
+        .then(res => {
+          // console.log(res);
+          if (res.data.length < 50) {
+            alert(`${res.data}`);
+          } else {
+            const token = res.data;
+            localStorage.setItem("token", token);
+            this.props.history.push("/resetpw");
+          }
+        })
+        .catch(error => console.log(error));
     } else {
       alert("Passwords do not match!");
       this.setState({
@@ -51,6 +72,17 @@ class ForgotPw extends Component {
               onChange={this.editForgotPwHandler}
               placeholder="Username"
               value={this.state.usernameInput}
+              required
+            />
+          </div>
+          <div>
+            E-mail: {"  "}
+            <input
+              name="emailInput"
+              type="email"
+              onChange={this.editForgotPwHandler}
+              placeholder="E-mail"
+              value={this.state.emailInput}
               required
             />
           </div>

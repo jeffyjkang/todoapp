@@ -1,14 +1,25 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Axios from "axios";
 
 class ResetPw extends Component {
   constructor() {
     super();
     this.state = {
-      usernameInput: "",
+      // usernameInput: "",
       passwordInput: "",
-      passwordInputC: ""
+      passwordInputC: "",
+      user: {}
     };
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    const params = { headers: { authorization: token } };
+    Axios.get("http://localhost:9000/users/id", params).then(res => {
+      console.log(res.data);
+      this.setState({ user: res.data });
+    });
   }
   // for input fields username input and password input
   editResetPwHandler = e => {
@@ -18,11 +29,25 @@ class ResetPw extends Component {
   resetPwSubmit = e => {
     e.preventDefault();
     if (this.state.passwordInput === this.state.passwordInputC) {
-      const username = this.state.usernameInput;
-      localStorage.setItem("username", username);
-      const password = this.state.passwordInput;
-      localStorage.setItem("password", password);
-      this.props.refresh();
+      // const username = this.state.usernameInput;
+      // localStorage.setItem("username", username);
+      // const password = this.state.passwordInput;
+      // localStorage.setItem("password", password);
+      // this.props.refresh();
+      const id = this.state.user.id;
+      const body = {
+        password: this.state.passwordInput
+      };
+      let token = localStorage.getItem("token");
+      const params = { headers: { authorization: token } };
+      Axios.put(`http://localhost:9000/users/${id}`, body, params)
+        .then(res => {
+          localStorage.removeItem("token");
+          alert("Password reset successful");
+          this.props.refresh();
+          this.props.history.push("/");
+        })
+        .catch(error => console.log(error));
     } else {
       alert("Passwords do not match!");
       this.setState({
@@ -37,9 +62,11 @@ class ResetPw extends Component {
     return (
       <div>
         <h3>Reset Password</h3>
+        <h6>username: {this.state.user.username}</h6>
+        <h6>email: {this.state.user.email}</h6>
         <p>Input new password to reset existing password.</p>
         <form onSubmit={this.resetPwSubmit}>
-          <div>
+          {/* <div>
             Username: {"  "}
             <input
               name="usernameInput"
@@ -49,7 +76,7 @@ class ResetPw extends Component {
               value={this.state.usernameInput}
               required
             />
-          </div>
+          </div> */}
           <div>
             New Password: {"  "}
             <input
