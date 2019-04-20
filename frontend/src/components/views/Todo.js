@@ -3,7 +3,6 @@ import { TodoContainer } from "../../styles/reusableStyles";
 import PropTypes from "prop-types";
 
 const Todo = props => {
-  // props has properties of each todo
   return (
     <TodoContainer
       onClick={() => {

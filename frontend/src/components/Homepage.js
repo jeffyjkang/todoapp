@@ -21,14 +21,10 @@ class Homepage extends Component {
   }
   // when component mounts bring in dummydata array
   componentDidMount() {
-    // this.setState({ todos: DummyData });
     const token = localStorage.getItem("token");
-    // console.log(token);
     const params = { headers: { authorization: token } };
-    // console.log(headers);
     Axios.get("http://localhost:9000/todos", params)
       .then(res => {
-        // console.log(res);
         this.setState({ todos: res.data });
       })
       .catch(error => console.log(error));
@@ -44,16 +40,11 @@ class Homepage extends Component {
   // create todo
   createTodoSubmit = todo => e => {
     e.preventDefault();
-    // this.selectTodoHandler(todo);
-    // this.setState({ todos: [...this.state.todos, todo] });
-    // this.props.history.push(`/todo/${todo.id}`, todo);
-    //
     let todoId = 0;
     const token = localStorage.getItem("token");
     const params = { headers: { authorization: token } };
     Axios.post("http://localhost:9000/todos", todo, params)
       .then(res => {
-        // console.log(res.data);
         todoId = res.data;
         this.componentDidMount();
       })
@@ -66,14 +57,6 @@ class Homepage extends Component {
   // edit todo
   editTodoSubmit = todo => e => {
     e.preventDefault();
-    // this.selectTodoHandler(todo);
-    // for (let i = 0; i < this.state.todos.length; i++) {
-    //   if (this.state.todos[i].id === todo.id) {
-    //     this.state.todos.splice(i, 1, todo);
-    //   }
-    // }
-    // this.setState({ todos: [...this.state.todos] });
-    // this.props.history.push(`/todo/${todo.id}`, todo);
     const todoId = todo.id;
     const body = {
       title: todo.title,
@@ -84,7 +67,6 @@ class Homepage extends Component {
     const params = { headers: { authorization: token } };
     Axios.put(`http://localhost:9000/todos/${todoId}`, body, params)
       .then(res => {
-        // console.log(res);
         this.componentDidMount();
       })
       .then(() => {
@@ -96,15 +78,6 @@ class Homepage extends Component {
   // delete todo
   deleteTodoSubmit = todo => e => {
     e.preventDefault();
-    console.log(todo);
-    // this.selectTodoHandler(todo);
-    // for (let i = 0; i < this.state.todos.length; i++) {
-    //   if (this.state.todos[i].id === todo.id) {
-    //     this.state.todos.splice(i, 1);
-    //   }
-    // }
-    // this.setState({ todos: [...this.state.todos] });
-    //
     const id = todo.id;
     const token = localStorage.getItem("token");
     const params = { headers: { authorization: token } };
@@ -119,14 +92,11 @@ class Homepage extends Component {
   // sign out
   signOut = e => {
     e.preventDefault();
-    // localStorage.removeItem("username");
-    // localStorage.removeItem("password");
     localStorage.removeItem("token");
     this.props.logOut();
     this.props.history.push("/");
   };
   render() {
-    // console.log(this.state);
     return (
       <HomeContainer>
         <Route

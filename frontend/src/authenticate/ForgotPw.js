@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import Axios from "axios";
 
-// temp password for testing
-// const tempPw = "pass";
-//
 class ForgotPw extends Component {
   constructor(props) {
-    // console.log(props);
     super(props);
     this.state = {
       usernameInput: "",
@@ -23,11 +19,6 @@ class ForgotPw extends Component {
   forgotPwSubmit = e => {
     e.preventDefault();
     if (this.state.passwordInput === this.state.passwordInputC) {
-      // if (this.state.passwordInput === tempPw) {
-      //   this.props.history.push("/resetpw");
-      // } else {
-      //   alert("Incorrect temporary password");
-      // }
       const params = {
         headers: {
           username: this.state.usernameInput,
@@ -37,7 +28,6 @@ class ForgotPw extends Component {
       };
       Axios.get("http://localhost:9000/users/forgotpw", params)
         .then(res => {
-          // console.log(res);
           if (res.data.length < 50) {
             alert(`${res.data}`);
           } else {

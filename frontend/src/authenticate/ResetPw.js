@@ -29,11 +29,6 @@ class ResetPw extends Component {
   resetPwSubmit = e => {
     e.preventDefault();
     if (this.state.passwordInput === this.state.passwordInputC) {
-      // const username = this.state.usernameInput;
-      // localStorage.setItem("username", username);
-      // const password = this.state.passwordInput;
-      // localStorage.setItem("password", password);
-      // this.props.refresh();
       const id = this.state.user.id;
       const body = {
         password: this.state.passwordInput
@@ -55,7 +50,6 @@ class ResetPw extends Component {
         passwordInputC: ""
       });
     }
-    // axios call to edit user
   };
 
   render() {
@@ -66,17 +60,6 @@ class ResetPw extends Component {
         <h6>email: {this.state.user.email}</h6>
         <p>Input new password to reset existing password.</p>
         <form onSubmit={this.resetPwSubmit}>
-          {/* <div>
-            Username: {"  "}
-            <input
-              name="usernameInput"
-              type="text"
-              onChange={this.editResetPwHandler}
-              placeholder="Username"
-              value={this.state.usernameInput}
-              required
-            />
-          </div> */}
           <div>
             New Password: {"  "}
             <input

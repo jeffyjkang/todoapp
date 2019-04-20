@@ -9,11 +9,7 @@ const Authenticate = Homepage => Auth =>
 
     // as HOC component mounts, if username and password exists set state of loggedIn to true
     componentDidMount() {
-      if (
-        // localStorage.getItem("username") &&
-        // localStorage.getItem("password")
-        localStorage.getItem("token")
-      ) {
+      if (localStorage.getItem("token")) {
         this.setState({ loggedIn: true });
         this.props.history.push("/");
       } else {
@@ -33,7 +29,6 @@ const Authenticate = Homepage => Auth =>
       return (
         <div>
           {this.state.loggedIn ? (
-            // <Route component={Homepage} loggedIn={this.state.loggedIn} />
             <Route
               path="/"
               render={props => <Homepage {...props} logOut={this.logOut} />}

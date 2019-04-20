@@ -31,7 +31,7 @@ router.post("/login", async (req, res) => {
       .first();
     if (user && bcrypt.compareSync(credentials.password, user.password)) {
       const token = auth.generateToken(user);
-      res.status(201).json(token);
+      res.status(200).json(token);
     } else {
       res.status(401).json({ error: "Incorrect credentials" });
     }
@@ -49,6 +49,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "There was an error retreiving the users." });
   }
 });
+
 // forgot pw route
 router.get("/forgotpw", async (req, res) => {
   const username = req.headers.username;
@@ -86,7 +87,7 @@ router.get("/id", auth.authorize, async (req, res) => {
 // put route
 router.put("/:id", auth.authorize, async (req, res) => {
   //
-  decodedToken = req.decodedToken;
+  const decodedToken = req.decodedToken;
   const id = req.params.id;
   let password = req.body.password;
   const hash = bcrypt.hashSync(password, 14);
@@ -112,5 +113,20 @@ router.put("/:id", auth.authorize, async (req, res) => {
 });
 
 // delete route
+router.delete("/:id", auth.authorize, async (req, res) => {
+  decodedToken = req.decodedToken;
+  const id = decodedToken.sub;
+  try {
+    const user = await usersDb.remove(id);
+    if (!user) {
+      res
+        .status(400)
+        .json({ error: "The used with the specified id does not exist." });
+    }
+    res.status(200).json({ message: "User was deleted successfully." });
+  } catch (error) {
+    res.status(500).json({ error: "There was an error deleting the user." });
+  }
+});
 
 module.exports = router;

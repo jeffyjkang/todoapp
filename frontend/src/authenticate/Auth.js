@@ -34,8 +34,6 @@ class Auth extends Component {
           path="/resetpw"
           render={props => <ResetPw {...props} refresh={this.props.refresh} />}
         />
-        {/* <Register /> */}
-        {/* <Login /> */}
       </AuthContainer>
     );
   }

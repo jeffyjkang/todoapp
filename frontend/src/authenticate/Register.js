@@ -36,20 +36,13 @@ class Register extends Component {
         passwordInputC: ""
       });
     }
-    // const username = this.state.usernameInput;
-    // localStorage.setItem("username", username);
-    // const password = this.state.passwordInput;
-    // localStorage.setItem("password", password);
     const newUser = {
       username: this.state.usernameInput,
       email: this.state.emailInput,
       password: this.state.passwordInput
     };
-
-    console.log(newUser);
     Axios.post("http://localhost:9000/users/register", newUser)
       .then(res => {
-        // console.log(res);
         if (res.data.errno) {
           alert("Username and/or E-mail already in the system.");
           this.setState({
@@ -61,13 +54,11 @@ class Register extends Component {
           });
         } else {
           const token = res.data;
-          // console.log(token);
           localStorage.setItem("token", token);
           this.props.refresh();
         }
       })
       .catch(error => console.log(error));
-    // axios call
   };
 
   render() {

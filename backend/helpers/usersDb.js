@@ -18,8 +18,5 @@ module.exports = {
     return db("users")
       .where("users.id", id)
       .del();
-  },
-  count: field => {
-    return db("users").count(field);
   }
 };

@@ -8,10 +8,8 @@ import PropTypes from "prop-types";
 
 class CreateTodoView extends Component {
   constructor(props) {
-    // console.log(props);
     super(props);
     this.state = {
-      // id: Math.random(),
       title: "",
       date: "",
       description: ""
@@ -45,7 +43,6 @@ class CreateTodoView extends Component {
               name="date"
               type="date"
               onChange={this.createTodoHandler}
-              //   placeholder="date"
               value={this.state.date}
               required
             />

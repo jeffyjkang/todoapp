@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 
 class EditTodoView extends Component {
   constructor(props) {
-    // console.log(props);
     super(props);
     this.state = {
       id: props.todo.id,
@@ -44,7 +43,6 @@ class EditTodoView extends Component {
               name="date"
               type="date"
               onChange={this.editTodoHandler}
-              //   placeholder="date"
               value={this.state.date}
               required
             />
