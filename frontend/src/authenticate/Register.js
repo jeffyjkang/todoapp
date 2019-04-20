@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from "axios";
 import PropTypes from "prop-types";
 
 class Register extends Component {
@@ -28,20 +29,36 @@ class Register extends Component {
         emailInputC: ""
       });
     }
-    if (this.state.passwordInput === this.state.passwordInputC) {
-      const username = this.state.usernameInput;
-      localStorage.setItem("username", username);
-      const password = this.state.passwordInput;
-      localStorage.setItem("password", password);
-      this.props.refresh();
-    } else {
+    if (this.state.passwordInput !== this.state.passwordInputC) {
       alert("Passwords do not match!");
       this.setState({
         passwordInput: "",
         passwordInputC: ""
       });
     }
-    // axios call
+    const newUser = {
+      username: this.state.usernameInput,
+      email: this.state.emailInput,
+      password: this.state.passwordInput
+    };
+    Axios.post("http://localhost:9000/users/register", newUser)
+      .then(res => {
+        if (res.data.errno) {
+          alert("Username and/or E-mail already in the system.");
+          this.setState({
+            usernameInput: "",
+            emailInput: "",
+            emailInputC: "",
+            passwordInput: "",
+            passwordInputC: ""
+          });
+        } else {
+          const token = res.data;
+          localStorage.setItem("token", token);
+          this.props.refresh();
+        }
+      })
+      .catch(error => console.log(error));
   };
 
   render() {

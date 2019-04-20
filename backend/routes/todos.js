@@ -42,6 +42,17 @@ router.get("/", auth.authorize, async (req, res) => {
     res.status(500).json({ error: "There was an error retrieving the todos." });
   }
 });
+
+router.get("/:id", auth.authorize, async (req, res) => {
+  const decodedToken = req.decodedToken;
+  const id = req.params.id;
+  try {
+    const todo = await todosDb.get(id).first();
+    res.status(200).json(todo);
+  } catch (error) {
+    res.status(500).json({ error: "There was an error retreiving the todo." });
+  }
+});
 // put route
 router.put("/:id", auth.authorize, async (req, res) => {
   const id = req.params.id;

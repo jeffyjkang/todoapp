@@ -13,7 +13,6 @@ class App extends Component {
     return (
       <div className="app">
         <Route path="/" component={AuthComponent} />
-        {/* <AuthComponent /> */}
       </div>
     );
   }

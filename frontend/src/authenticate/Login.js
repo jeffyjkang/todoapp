@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
+import Axios from "axios";
 
 class Login extends Component {
   constructor() {
@@ -19,13 +20,17 @@ class Login extends Component {
   // to login, currently sets localstorage username, password
   loginSubmit = e => {
     e.preventDefault();
-    const username = this.state.usernameInput;
-    localStorage.setItem("username", username);
-    const password = this.state.passwordInput;
-    localStorage.setItem("password", password);
-    window.location.reload();
-    this.props.refresh();
-    // axios call
+    const user = {
+      username: this.state.usernameInput,
+      password: this.state.passwordInput
+    };
+    Axios.post("http://localhost:9000/users/login", user)
+      .then(res => {
+        const token = res.data;
+        localStorage.setItem("token", token);
+        this.props.refresh();
+      })
+      .catch(error => console.log(error));
   };
 
   render() {

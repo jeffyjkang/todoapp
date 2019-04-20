@@ -4,6 +4,8 @@ const express = require("express");
 const helmet = require("helmet");
 // import morgan HTTP request logger middleware
 const morgan = require("morgan");
+// import cors, cross origin resource sharing
+const cors = require("cors");
 // server
 const server = express();
 // import routes
@@ -13,6 +15,7 @@ const todos = require("./routes/todos");
 server.use(express.json());
 server.use(helmet());
 server.use(morgan("dev"));
+server.use(cors());
 // server use routes
 server.use("/users", users);
 server.use("/todos", todos);
