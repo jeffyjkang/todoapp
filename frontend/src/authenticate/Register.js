@@ -41,7 +41,10 @@ class Register extends Component {
       email: this.state.emailInput,
       password: this.state.passwordInput
     };
-    Axios.post("http://localhost:9000/users/register", newUser)
+    Axios.post(
+      "https://todoapp-backend-api.herokuapp.com/users/register",
+      newUser
+    )
       .then(res => {
         if (res.data.errno) {
           alert("Username and/or E-mail already in the system.");
