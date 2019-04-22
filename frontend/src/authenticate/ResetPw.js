@@ -16,7 +16,10 @@ class ResetPw extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     const params = { headers: { authorization: token } };
-    Axios.get("http://localhost:9000/users/id", params).then(res => {
+    Axios.get(
+      "https://todoapp-backend-api.herokuapp.com/users/id",
+      params
+    ).then(res => {
       console.log(res.data);
       this.setState({ user: res.data });
     });
@@ -35,7 +38,7 @@ class ResetPw extends Component {
       };
       let token = localStorage.getItem("token");
       const params = { headers: { authorization: token } };
-      Axios.put(`http://localhost:9000/users/${id}`, body, params)
+      Axios.put(`https://todoapp-backend-api.herokuapp.com/${id}`, body, params)
         .then(res => {
           localStorage.removeItem("token");
           alert("Password reset successful");
