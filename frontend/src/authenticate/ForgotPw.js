@@ -26,10 +26,7 @@ class ForgotPw extends Component {
           password: this.state.passwordInput
         }
       };
-      Axios.get(
-        "https://todoapp-backend-api.herokuapp.com/users/forgotpw",
-        params
-      )
+      Axios.get("http://localhost:9000/users/forgotpw", params)
         .then(res => {
           if (res.data.length < 50) {
             alert(`${res.data}`);

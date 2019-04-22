@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
       .integer("userId")
       .unsigned()
       .notNullable()
-      .references("user.id");
+      .references("users.id");
   });
 };
 
