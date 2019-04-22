@@ -24,7 +24,7 @@ class Login extends Component {
       username: this.state.usernameInput,
       password: this.state.passwordInput
     };
-    Axios.post("https://todoapp-backend-api.herokuapp.com/users/login", user)
+    Axios.post("http://localhost:9000/users/login", user)
       .then(res => {
         const token = res.data;
         localStorage.setItem("token", token);
